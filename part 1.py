@@ -14,6 +14,22 @@ def fill_random(tablica, n, m):
     for i in range(n, m):
         k = randrange(n, m)
         tablica.append(k)
+        
+def fill_vshape(tablica, n, m):
+    tablica1 = []
+    for i in range(n, m):
+        k = randrange(n, m)
+        tablica1.append(k)
+    tablica1.sort()
+    tablica1.reverse()
+    tab1 = tablica1[::2]
+    print(tab1)
+    tab2 = tablica1[1::2]
+    print(tab2)
+    tab2.sort()
+    print(tab2)
+    tablica.extend(tab1)
+    tablica.extend(tab2)
 
 def is_increasing(tablica):
     for i in range(len(tablica) - 1):
