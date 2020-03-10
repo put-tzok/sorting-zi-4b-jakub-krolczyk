@@ -1,17 +1,16 @@
-def insertion_sort(A,n):
-    for j in range(n):
+def insertion_sort(A):
+    for j in range(len(A)):
         key = A[j]
-        i = j-1
+        i = j - 1
 
-        while i>=0 and A[i] > key:
+        while i >= 0 and A[i] > key:
             A[i + 1] = A[i]
 
-            i = i-1
+            i = i - 1
 
-        A[i+1] = key
+        A[i + 1] = key
     return A
 
-B = [5,7,3,2,8,456,4,75,45,23,643,54865,5,5,7,6]
-x = len(B)
-print(insertion_sort(B,x))
-print(x)
+A = [5, 7, 3, 2, 8, 456, 4, 75, 45, 23, 643, 54865, 5, 5, 7, 6]
+print(insertion_sort(A))
+
