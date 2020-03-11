@@ -61,7 +61,49 @@ def heap_sort(tablica):
 
     return tablica
 
-fill_decreasing(tablica, -100, 100)
-print(tablica)
-heap_sort(tablica)
-print(tablica)
+def insertion_sort(tablica):
+    for j in range(len(tablica)):
+        key = tablica[j]
+        i = j - 1
+
+        while i >= 0 and tablica[i] > key:
+            tablica[i + 1] = tablica[i]
+
+            i = i - 1
+
+        tablica[i + 1] = key
+    return tablica
+
+def partition(tablica, p, r):
+    pivot = tablica[p]
+    i = p + 1 #index mniejszy
+    j = r #index większy
+
+    while True:    #podział tablicy na dwie części:
+        while i <= j and tablica[j] >= pivot:
+            j = j - 1
+
+        while i <= j and tablica[i] <= pivot:
+            i = i + 1
+
+        if i <= j:
+            tablica[i], tablica[j] = tablica[j], tablica[i]
+        else:
+            break
+    tablica[p], tablica[j] = tablica[j], tablica[p]
+
+    return j
+
+def quick_sort(tablica, p, r):
+    if p >= r:
+        return
+    #rozdzielanie tablicy i ponownie poddawanie podzielonych części porządkowaniu:
+    q = partition(tablica, p, r)
+    quick_sort(tablica, p, q - 1)
+    quick_sort(tablica, q + 1, r)
+
+def quicksort(tablica):
+    quick_sort(tablica, 0, len(tablica) - 1)
+    return tablica
+
+
