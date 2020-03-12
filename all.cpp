@@ -33,11 +33,64 @@ void selection_sort(int *t, unsigned int n) {
 }
 
 void insertion_sort(int *t, unsigned int n) {
-    // TODO: implement
+    int key, i;
+    n = n+1;
+    for(unsigned int j=1; (n-1)>j; j++)
+    {
+        key = t[j];
+        i = j- 1;
+
+        while((i>=0)&&(t[i]>key))
+        {
+            t[i+1] = t[i];
+            i--;
+
+        }
+        t[i+1] = key;
+    }
+}
+int partition(int *A, int p, int r)
+{
+    int pivot = A[p];
+    int i = p;
+    int j = r;
+    int w;
+
+    while(1)
+    {
+        while(A[i] < pivot)
+            i++;
+        while(A[j] > pivot)
+            j--;
+
+    if(i < j)
+    {
+        w = A[i];
+        A[i] = A[j];
+        A[j] = w;
+        i++;
+        j--;
+    }
+        else
+        return j;
+    }
 }
 
-void quick_sort(int *t, unsigned int n) {
-    // TODO: implement
+void quicksort(int *A, int p, int r)
+{
+    int q;
+
+        if(p < r)
+    {
+        q = partition(A,p,r);
+        quicksort(A, p, q);
+        quicksort(A, q+1, r);
+    }
+}
+
+void quick_sort(int *t,unsigned int n)
+{
+    quicksort(A, 0, n-1);
 }
 
 void heap_sort(int *t, unsigned int n) {
