@@ -1,5 +1,6 @@
 from random import randrange
 from heapq import heappop, heappush
+import time
 tablica = []
 def fill_increasing(tablica, n, m):
     for i in range(n, m):
@@ -40,70 +41,87 @@ def is_decreasing(tablica):
         assert tablica[i] > tablica[i+1]
 
 def selection_sort(tablica):
-    for i in range(len(tablica)):
+    start = time.time()
+    tablica1 = tablica[:]
+    for i in range(len(tablica1)):
         min_idx = i
-        for j in range(i+1, len(tablica)):
-            if tablica[min_idx] > tablica[j]:
+        for j in range(i+1, len(tablica1)):
+            if tablica1[min_idx] > tablica1[j]:
                 min_idx = j
 
 
-        tablica[i], tablica[min_idx] = tablica[min_idx], tablica[i]
+        tablica1[i], tablica1[min_idx] = tablica1[min_idx], tablica1[i]
+    end = time.time()
+    finish = (end - start)
+    return finish
 
 def heap_sort(tablica):
+    start = time.time()
+    tablica1 = tablica[:]
     heap = []
-    for i in tablica:
+    for i in tablica1:
         heappush(heap, i)
 
-    tablica.clear()
+    tablica1.clear()
 
     while heap:
-        tablica.append(heappop(heap))
+        tablica1.append(heappop(heap))
 
-    return tablica
+    end = time.time()
+    finish = (end - start)
+    return finish
 
 def insertion_sort(tablica):
-    for j in range(len(tablica)):
-        key = tablica[j]
+    start = time.time()
+    tablica1 = tablica[:]
+    for j in range(len(tablica1)):
+        key = tablica1[j]
         i = j - 1
 
-        while i >= 0 and tablica[i] > key:
-            tablica[i + 1] = tablica[i]
+        while i >= 0 and tablica1[i] > key:
+            tablica1[i + 1] = tablica1[i]
 
             i = i - 1
 
-        tablica[i + 1] = key
-    return tablica
+        tablica1[i + 1] = key
+    end = time.time()
+    finish = (end - start)
+    return finish
 
 def partition(tablica, p, r):
-    pivot = tablica[p]
+    tablica1 = tablica[:]
+    pivot = tablica1[p]
     i = p + 1 #index mniejszy
     j = r #index większy
 
     while True:    #podział tablicy na dwie części:
-        while i <= j and tablica[j] >= pivot:
+        while i <= j and tablica1[j] >= pivot:
             j = j - 1
 
-        while i <= j and tablica[i] <= pivot:
+        while i <= j and tablica1[i] <= pivot:
             i = i + 1
 
         if i <= j:
-            tablica[i], tablica[j] = tablica[j], tablica[i]
+            tablica1[i], tablica1[j] = tablica1[j], tablica1[i]
         else:
             break
-    tablica[p], tablica[j] = tablica[j], tablica[p]
+    tablica1[p], tablica1[j] = tablica1[j], tablica1[p]
 
     return j
 
 def quick_sort(tablica, p, r):
+    tablica1 = tablica[:]
     if p >= r:
         return
     #rozdzielanie tablicy i ponownie poddawanie podzielonych części porządkowaniu:
-    q = partition(tablica, p, r)
-    quick_sort(tablica, p, q - 1)
-    quick_sort(tablica, q + 1, r)
+    q = partition(tablica1, p, r)
+    quick_sort(tablica1, p, q - 1)
+    quick_sort(tablica1, q + 1, r)
 
 def quicksort(tablica):
-    quick_sort(tablica, 0, len(tablica) - 1)
-    return tablica
-
-
+    start = time.time()
+    tablica1 = tablica[:]
+    quick_sort(tablica1, 0, len(tablica1) - 1)
+    end = time.time()
+    finish = (end - start)
+    return finish
