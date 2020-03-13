@@ -25,12 +25,31 @@ void fill_decreasing(int *t, unsigned int n) {
 }
 
 void fill_vshape(int *t, unsigned int n) {
-    // TODO: implement
+
+    int component = n;
+    for(int i=0; n/2>i; i++)
+    {
+        t[i] = component;
+        component = component - 2;
+    }
+    for(int i=(n/2); n>i; i++)
+    {
+        if(component == 1)
+           {
+               component--;
+           }
+        t[i] = component;
+        component = component + 2;
+    }
 }
+
+//Selection sort:
 
 void selection_sort(int *t, unsigned int n) {
     // TODO: implement
 }
+
+//Insertion sort:
 
 void insertion_sort(int *t, unsigned int n) {
     int key, i;
@@ -49,6 +68,11 @@ void insertion_sort(int *t, unsigned int n) {
         t[i+1] = key;
     }
 }
+
+
+//Quick sort:
+
+
 int partition(int *A, int p, int r)
 {
     int pivot = A[p];
@@ -93,6 +117,10 @@ void quick_sort(int *t,unsigned int n)
     quicksort(A, 0, n-1);
 }
 
+
+
+//Heap sort
+
 void heap_sort(int *t, unsigned int n) {
     // TODO
 }
@@ -122,9 +150,9 @@ void is_decreasing(int *t,unsigned int n) {
 }
 
 void is_vshape(int *t, unsigned int n) {
+    fill_vshape(t, n);
     int *begin = t;
     int *end = t + n - 1;
-
     while (end - begin > 1) {
         assert(*begin > *end);
         begin++;
